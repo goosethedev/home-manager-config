@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Basic info
@@ -16,6 +16,9 @@
     ../modules/helix.nix
 
     # ../modules/eww/eww.nix
+    ../modules/kitty.nix
+    ../modules/zsh.nix
+    ../modules/starship.nix
   ];
 
   # For non NixOS systems
@@ -25,15 +28,20 @@
   xdg.mime.enable = true;
   xdg.systemDirs.data = [ "${config.home.homeDirectory}/.nix-profile/share/applications" ];
 
+  # Enable discovering fonts in home.packages
+  fonts.fontconfig.enable = true;
+
   # Local packages
   home.packages = with pkgs; [
     bitwarden
+    gthumb
     obsidian
     onlyoffice-bin
     neovim
     neofetch
     spotify
     stremio
+    vlc
 
     # Dependencies for Emacs
     fd
@@ -43,6 +51,12 @@
     libtool
     nixfmt
     shellcheck
+
+    # For OpenGL programs e.g. kitty
+    nixgl.nixGLIntel
+
+    # Fonts
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
