@@ -22,12 +22,12 @@
     };
     envExtra = ''
       export EDITOR=hx
-      export LESSHISTFILE="$XDG_STATE_HOME"
+      export LESSHISTFILE="$HOME/.local/state"
       export GNUPGHOME="$HOME/.config/gnupg"
       export PATH="$HOME/.config/emacs/bin:$PATH"
     '';
+    # eval "$(starship init zsh)"
     initExtra = ''
-      eval "$(starship init zsh)"
       eval "$(direnv hook zsh)"
     '';
     shellAliases = {
@@ -37,7 +37,7 @@
     oh-my-zsh = {
       enable = true;
       custom = "$HOME/.config/zsh/oh-my-zsh";
-      plugins = [ "aliases" "git" ];
+      plugins = [ "aliases" "git" "starship" ];
     };
   };
 }
