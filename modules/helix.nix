@@ -15,19 +15,29 @@
       };
 
       keys.normal.space = {
+        "." = "file_picker";
+        q = ":q";
+        b.k = ":buffer-close";
+        f = {
+          f = ":open";
+          s = ":write";
+        };
+      };
+      
+      keys.normal.space.w = {
         n = "jump_view_left";
         i = "jump_view_right";
         u = "jump_view_up";
         e = "jump_view_down";
-
-        o = "file_picker";
-        q = ":q";
-        w = { h = ":hsplit";  v = ":vsplit"; };
+        s = ":hsplit";
+        v = ":vsplit";
+        c = ":quit";
       };
 
       keys.insert = {
         "C-c" = "normal_mode";
         "A-/" = "normal_mode";
+        ";" = { ";" = "normal_mode"; };
       };
     };
 
