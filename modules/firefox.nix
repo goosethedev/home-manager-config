@@ -5,6 +5,7 @@
   programs.firefox.package = pkgs.firefox.override {
     nativeMessagingHosts = [ pkgs.passff-host ];
   };
+  # Don't try to install gnome-browser-connector on non-NixOS. Doesn't work.
 
   programs.firefox.profiles."goose" = {
     id = 0;
