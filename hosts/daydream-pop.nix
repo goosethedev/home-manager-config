@@ -40,7 +40,6 @@
     neovim
     neofetch
     spotify
-#     stremio
     vlc
 
     # Dependencies for Emacs
