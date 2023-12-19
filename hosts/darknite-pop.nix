@@ -16,7 +16,8 @@
     ../modules/helix.nix
 
     # ../modules/eww/eww.nix
-    ../modules/kitty.nix
+    # ../modules/kitty.nix
+    ../modules/wezterm.nix
     ../modules/zsh.nix
     ../modules/starship.nix
   ];
@@ -42,6 +43,8 @@
     spotify
     stremio
     vlc
+    # Doesn't open for some reason
+    # zoom-us
 
     # Dependencies for Emacs
     fd
@@ -74,6 +77,32 @@
 
   # Programs
   programs.direnv.enable = true;
+
+  # Doesn't work. gpg-agent.conf doesn't get created and pinentry fails
+  # Use the system one
+  
+  # programs.password-store = {
+  #   enable = true;
+  #   package = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]);
+  #   settings = {
+  #     PASSWORD_STORE_DIR = "$HOME/.password-store";
+  #     PASSWORD_STORE_KEY = "goosethedev@proton.me";
+  #     PASSWORD_STORE_CLIP_TIME = "60";
+  #   };
+  # };
+
+  # programs.gpg = {
+  #   enable = true;
+  #   homedir = "${config.xdg.dataHome}/gnupg";
+  # };
+
+  # services.gpg-agent = {
+  #   enable = true;
+  #   pinentryFlavor = "qt";
+  #   extraConfig = ''
+  #     pinentry-program ${pkgs.pinentry-qt}
+  #   '';
+  # };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
