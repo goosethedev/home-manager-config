@@ -35,6 +35,8 @@
     neofetch
     notion-app-enhanced
     spotify
+    stremio
+    vlc
 
     # Dependencies for Emacs
     fd
@@ -44,6 +46,9 @@
     libtool
     nixfmt
     shellcheck
+
+    # Fonts
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
