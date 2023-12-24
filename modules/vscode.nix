@@ -10,6 +10,7 @@
       vscodevim.vim
       esbenp.prettier-vscode
       pkief.material-icon-theme
+      bbenoist.nix
     ];
     userSettings = {
     	"workbench.sideBar.location" = "right";
