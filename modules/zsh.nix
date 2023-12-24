@@ -10,12 +10,13 @@
     dotDir = ".config/zsh";
     # completionInit = ''
     # ''
-    dirHashes = {
-      docs  = "$HOME/Documents";
-      dl    = "$HOME/Downloads";
-      pr    = "$HOME/Projects";
-      temp  = "$HOME/Temp";
-    };
+    # Don't know what this do
+    # dirHashes = {
+    #   docs  = "$HOME/Documents";
+    #   dl    = "$HOME/Downloads";
+    #   pr    = "$HOME/Projects";
+    #   temp  = "$HOME/Temp";
+    # };
     history = {
       ignoreAllDups = true;
       path = "$HOME/.cache/.zsh_history";
@@ -26,7 +27,6 @@
       export GNUPGHOME="$HOME/.config/gnupg"
       export PATH="$HOME/.config/emacs/bin:$PATH"
     '';
-    # eval "$(starship init zsh)"
     initExtra = ''
       eval "$(direnv hook zsh)"
     '';
@@ -40,4 +40,11 @@
       plugins = [ "aliases" "git" "starship" ];
     };
   };
+
+  # Enable Starship shell
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
 }
