@@ -6,4 +6,10 @@
     package = pkgs.eww-wayland;
     configDir = ./config;
   };
+
+  # Dependencies
+  home.packages = with pkgs; [
+    jq
+    socat
+  ];
 }
