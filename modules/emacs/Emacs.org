@@ -1,22 +1,45 @@
-;; Remove UI unnecessary things
-(setq inhibit-startup-message t)
+#+title: Emacs From Scratch Configuration
+#+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
 
-(scroll-bar-mode -1) ;; Disable visible scrollbar
-(tool-bar-mode -1) ;; Disable toolbar
-(tooltip-mode -1) ;; Disable tooltips
-(set-fringe-mode 10) ;; Give some breathing room
+* Introduction
 
-(menu-bar-mode -1) ;; Disable menu bar
+This file generates a ~init.el~ file in the same directory.
 
-;; Visual flash on error
-(setq visible-bell t)
+#+begin_src emacs-lisp
+;; NOTE: init.el is now generated from Emacs.org.  Please edit that file
+;;       in Emacs and init.el will be generated automatically! 
+#+end_src
 
-;; Font
-(set-face-attribute 'default nil :font "FiraCode Nerd Font") ;; set :height 200 for larger font size
 
-;; Built-in theme
-;; (load-theme 'tango-dark)
+* Initial Configs
 
+Move /auto-save/ files to ~.cache/emacs/~.
+
+#+begin_src emacs-lisp
+(setq backup-directory-alist `(("." . "~/.cache/emacs/")))
+#+end_src
+
+Open new buffers on vertical split instead of horizontal.
+
+#+begin_src emacs-lisp
+(setq
+ split-width-threshold 0
+ split-height-threshold nil)
+#+end_src
+
+Load ~custom.el~. It seems it will be modified by Emacs, so putting its contents here may break it.
+
+#+begin_src emacs-lisp
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)
+#+end_src
+
+
+* Package System Config
+
+ We use ~package~ and ~use-package~.
+
+ #+begin_src emacs-lisp
 ;; Initialize package sources
 (require 'package)
 
@@ -34,8 +57,55 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+#+end_src
 
 
+* UI Customizations
+
+** Basic elements
+
+Remove unnecesary visual elements.
+
+#+begin_src emacs-lisp
+(setq inhibit-startup-message t) ;; Remove initial message
+
+(scroll-bar-mode -1) ;; Disable visible scrollbar
+(tool-bar-mode -1) ;; Disable toolbar
+(tooltip-mode -1) ;; Disable tooltips
+(set-fringe-mode 10) ;; Give some breathing room
+
+(menu-bar-mode -1) ;; Disable menu bar
+
+(setq visible-bell t) ;; Flash on error
+#+end_src
+
+** Fonts and Icons
+
+Use FiraCode Nerd Font.
+
+- Use ~:height 200~ for a larger font size.
+
+#+begin_src emacs-lisp
+(set-face-attribute 'default nil :font "FiraCode Nerd Font")
+#+end_src
+
+Install /All/ the icons.
+
+#+begin_src emacs-lisp
+(use-package all-the-icons)
+#+end_src
+
+*Remember* to do ~M-x all-the-icons-install-fonts~ and ~M-x nerd-icons-install-fonts~ once after installation.
+
+** Built-in theme (disabled in favor of Catppuccin)
+
+#+begin_src emacs-lisp
+;; (load-theme 'tango-dark)
+#+end_src
+
+** Line numbers
+
+#+begin_src emacs-lisp
 ;; Enable line and column numbers for all buffers
 (global-display-line-numbers-mode t)
 (column-number-mode)
@@ -47,11 +117,13 @@
                 treemacs-mode-hook
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
+#+end_src
 
+** Ivy and Counsel
 
-;; Make ESC quit prompts
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+Completion framework, with enhanced buffers and descriptions.
 
+#+begin_src emacs-lisp
 ;; Completion framework
 (use-package ivy
   :diminish
@@ -64,6 +136,7 @@
          :map ivy-switch-buffer-map
          ;; ("C-k" . ivy-previous-line)
          ("C-l" . ivy-done)
+
          ("C-d" . ivy-switch-buffer-kill)
          :map ivy-reverse-i-search-map
          ;; ("C-k" . ivy-previous-line)
@@ -77,17 +150,21 @@
          ("C-x b" . counsel-ibuffer)
          ("C-x C-f" . counsel-find-file)
          :map minibuffer-local-map
-         ("C-r" . 'counsel-minibuffer-history)))
-;;  :config
-;;  (setq ivy-initial-inputs-alist nil)) ;; Don't start search with ^
+         ("C-r" . 'counsel-minibuffer-history))
+ :config
+ (setq ivy-initial-inputs-alist nil)) ;; Don't start search with ^
 
 ;; Include keybinds and descriptions on Ivy
 (use-package ivy-rich
   :init
   (ivy-rich-mode 1))
+#+end_src
 
+** Helpful
 
-;; Better help pages
+Better help pages.
+
+#+begin_src emacs-lisp
 (use-package helpful
   :custom
   (counsel-describe-function-function #'helpful-callable)
@@ -97,43 +174,54 @@
   ([remap describe-command] . helpful-command)
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
+#+end_src
 
+** Which Key
 
-;; Doom modeline bc cute af
-(use-package doom-modeline
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 15)))
+Helper buffer for chained key pressed commands.
 
-;; Catppuccin FTW
-(use-package catppuccin-theme)
-(load-theme 'catppuccin :no-confirm)
-(setq catppuccin-flavor 'mocha) ;; or 'latte, 'macchiato, or 'mocha
-(catppuccin-reload)
-
-
-;; Rainbow colors for brackets
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
-
-
-;; Helper buffer on chained key presses
+#+begin_src emacs-lisp
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 1.5))
+#+end_src
 
-;; Open new buffers on vertical split instead of horizontal
-(setq
- split-width-threshold 0
- split-height-threshold nil)
+** Doom Modeline
 
-;; Get all the icons package. After that, do just once:
-;; M-x all-the-icons-install-fonts
-(use-package all-the-icons)
+It's cute af.
+
+#+begin_src emacs-lisp
+(use-package doom-modeline
+  :init (doom-modeline-mode 1)
+  :custom ((doom-modeline-height 15)))
+#+end_src
+
+** Catppuccin
+
+ALSO CUTE AF.
+
+#+begin_src emacs-lisp
+(use-package catppuccin-theme)
+(load-theme 'catppuccin :no-confirm)
+(setq catppuccin-flavor 'mocha) ;; or 'latte, 'macchiato, or 'mocha
+(catppuccin-reload)
+#+end_src
 
 
-;; Meow config
+* Keybinds - Meow
+
+** Global native keybinds
+
+#+begin_src emacs-lisp
+;; Make ESC quit prompts
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+#+end_src
+
+** Meow
+
+#+begin_src emacs-lisp
 (use-package meow)
 
 (defun meow-setup ()
@@ -253,21 +341,25 @@
 (require 'meow)
 (meow-setup)
 (meow-global-mode 1)
+#+end_src
+
+** Keychord (disabled)
+
+Used it for bind ~;;~ to exit Meow /Insert Mode/, but turns out pressing ~Esc~ is easy with Dreymar's Extend layer.
+
+#+begin_src emacs-lisp
+;; (use-package key-chord)
+;; (setq key-chord-two-keys-delay 0.05)
+;; (key-chord-define meow-insert-state-keymap ";;" 'meow-normal-mode)
+;; (key-chord-mode 1)
+#+end_src
 
 
-;; Exit insert mode by pressing ; twice (;;) quickly
-(use-package key-chord)
-(setq key-chord-two-keys-delay 0.05)
-(key-chord-define meow-insert-state-keymap ";;" 'meow-normal-mode)
-(key-chord-mode 1)
+* Development
 
+** Projectile
 
-;; Load Custom from external file
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
-
-
-;; Projectile setup
+#+begin_src emacs-lisp
 (use-package projectile
   :diminish projectile-mode
   :config (projectile-mode)
@@ -280,16 +372,103 @@
     (setq projectile-project-search-path '("~/Projects")))
   (when (file-directory-p "~/Personal")
     (setq projectile-project-search-path '("~/Personal/Orgmind" "~/Personal/Hypermind")))
-  (setq projectile-switch-project-action #'projectile-dired))
+  (setq projectile-switch-project-action #'projectile-find-file))
 
 (use-package counsel-projectile
   :config (counsel-projectile-mode))
+#+end_src
 
+** Magit
 
-;; Magit setup
+#+begin_src emacs-lisp
 (use-package magit
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+#+end_src
 
-;; Org mode
-(use-package org)
+** Rainbow delimiters
+
+Match opening and closing brackets with /rainbow/ colors.
+
+#+begin_src emacs-lisp
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+#+end_src
+
+
+* Org Mode
+
+** Basics
+
+#+begin_src emacs-lisp
+;; Insert and delete bulleted items naturally
+(use-package org-autolist)
+;; Show markers only on editing rich text
+(use-package org-appear)
+
+(defun efs/org-mode-setup ()
+  (org-indent-mode)
+  (org-autolist-mode)
+  (org-appear-mode)
+  (variable-pitch-mode 0)
+  (visual-line-mode 0))
+
+;; Replace list hyphen with dot
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([-]\\) "
+                        (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+;; Change heading ellipses
+(use-package org
+  :hook (org-mode . efs/org-mode-setup)
+  :config
+  (setq org-ellipsis " ▾")
+
+  ;; (setq org-agenda-start-with-log-mode t)
+  ;; (setq org-log-done t)
+  ;; (setq org-log-into-drawer t)
+
+  (setq org-agenda-files '("~/Personal/Orgmind/TODO.org")))
+
+;; Change heading bullets
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+
+(defun efs/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+;; Make Org files centered
+(use-package visual-fill-column
+  :hook (org-mode . efs/org-mode-visual-fill))
+#+end_src
+
+** Babel
+
+Languages to load here.
+
+#+begin_src emacs-lisp
+(org-babel-do-load-languages
+  'org-babel-load-languages
+  '((emacs-lisp . t)
+    (python . t)))
+#+end_src
+
+Auto recreate /tangled/ ~init.el~ when saving this config file.
+
+#+begin_src emacs-lisp
+(defun efs/org-babel-tangle-config ()
+  (when (string-equal (buffer-file-name)
+                      (expand-file-name "~/.config/emacs/Emacs.org"))
+  ;; Dynamic scoping to the rescue
+  (let ((org-confirm-babel-evaluate nil))
+        (org-babel-tangle))))
+
+(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
+#+end_src
+
+ 
