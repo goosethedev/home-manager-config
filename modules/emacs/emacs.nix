@@ -21,9 +21,12 @@
     shellcheck
 
     # Lang servers
-    nil # Nix
+    nil # Nix LS
+    nixfmt # Nix formatter
     typescript
     nodePackages.typescript-language-server
+    yaml-language-server
+    dockerfile-language-server-nodejs
   ];
   
 }
