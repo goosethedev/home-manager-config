@@ -10,18 +10,32 @@
       theme = "catppuccin_mocha";
       editor.soft-wrap.enable = true;
 
+      keys.insert = {
+        "C-c" = "normal_mode";
+        "A-/" = "normal_mode";
+      };
+
       keys.normal = {
-        "C-s" = ":w";
+        ";" = "repeat_last_motion";
+        j = "half_page_up";
+        h = "half_page_down";
+        G = "goto_last_line";
+      };
+
+      keys.normal.g = {
+        u = "jump_backward"
+        e = "jump_forward"
       };
 
       keys.normal.space = {
         "." = "file_picker";
-        q = ":q";
-        b.k = ":buffer-close";
-        f = {
-          f = ":open";
-          s = ":write";
-        };
+        ";" = "toggle_comments"
+      };
+      
+      keys.normal.space.x = {
+        s = ":write";
+        c = ":quit-all";
+        k = ":buffer-close";
       };
       
       keys.normal.space.w = {
@@ -29,15 +43,7 @@
         i = "jump_view_right";
         u = "jump_view_up";
         e = "jump_view_down";
-        s = ":hsplit";
-        v = ":vsplit";
-        c = ":quit";
-      };
-
-      keys.insert = {
-        "C-c" = "normal_mode";
-        "A-/" = "normal_mode";
-        ";" = { ";" = "normal_mode"; };
+        c = "wclose";
       };
     };
 
