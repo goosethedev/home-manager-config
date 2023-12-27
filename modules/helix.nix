@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  # Import LSPs
+  imports = [
+    ../lsp.nix
+  ];
+
   programs.helix = {
     enable = true;
 
@@ -31,7 +36,7 @@
         "." = "file_picker";
         ";" = "toggle_comments"
       };
-      
+
       keys.normal.space.x = {
         s = ":write";
         c = ":quit-all";

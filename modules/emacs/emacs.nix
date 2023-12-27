@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
+  # Import LSPs
+  imports = [
+    ../lsp.nix
+  ];
+
   programs.emacs = {
     enable = true;
   };
@@ -19,14 +24,6 @@
     gnumake
     libtool
     shellcheck
-
-    # Lang servers
-    nil # Nix LS
-    nixfmt # Nix formatter
-    typescript
-    nodePackages.typescript-language-server
-    yaml-language-server
-    dockerfile-language-server-nodejs
   ];
   
 }
