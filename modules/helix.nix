@@ -3,14 +3,71 @@
 {
   # Import LSPs
   imports = [
-    ../lsp.nix
+    ./lsp.nix
   ];
 
   programs.helix = {
     enable = true;
 
-    languages = {};
+    # ==============  Languages  ============= #
+    
+    languages = {
+      language = [
+        {
+          name = "nix";
+          formatter = { command = "nixpkgs-fmt"; };
+        }
+        {
+          name = "python";
+          language-servers = [ "pyright" "ruff" ];
+          formatter = {
+            command = "black";
+            args = [ "--line-length" "88" "--quiet" "-" ];
+          };
+        }
+        {
+          name = "html";
+          language-servers = [ "vscode-html-language-server" "tailwindcss-ls" ];
+        }
+        {
+          name = "css";
+          language-servers = [ "vscode-css-language-server" "tailwindcss-ls" ];
+        }
+        {
+          name = "jsx";
+          language-servers = [ "typescript-language-server" "tailwindcss-ls" ];
+        }
+        {
+          name = "tsx";
+          language-servers = [ "typescript-language-server" "tailwindcss-ls" ];
+        }
+        {
+          name = "toml";
+          formatter = { command = "taplo"; args = [ "fmt" "-" ]; };
+        }
+      ];
 
+      language-server = {
+        vscode-json-language-server.config = {
+          provideFormatter = true;
+          json = { keepLines = { enable = true; }; };         
+        };
+
+        pyright.config.python.analysis.typeCheckingMode = "basic";
+        ruff = {
+          command = "ruff-lsp";
+          args = [ "--ignore" "E501" ];
+        };
+
+        yaml-language-server.config.yaml = {
+          format = { enable = true; };
+          validation = true;
+        };
+      };
+    };
+
+    # ==============  Settings  ============= #
+    
     settings = {
       theme = "catppuccin_mocha";
       editor.soft-wrap.enable = true;
@@ -28,13 +85,13 @@
       };
 
       keys.normal.g = {
-        u = "jump_backward"
-        e = "jump_forward"
+        u = "jump_backward";
+        e = "jump_forward";
       };
 
       keys.normal.space = {
         "." = "file_picker";
-        ";" = "toggle_comments"
+        ";" = "toggle_comments";
       };
 
       keys.normal.space.x = {

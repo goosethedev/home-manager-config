@@ -11,7 +11,7 @@
     typescript
     nodePackages.typescript-language-server
     vscode-langservers-extracted
-    tailwind-language-server
+    tailwindcss-language-server
 
     # Python (Pyright + Ruff + Black)
     nodePackages.pyright
