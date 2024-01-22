@@ -23,6 +23,7 @@
     clang-tools # C / C++
     dockerfile-language-server-nodejs
     marksman # Markdown
+    rust-analyzer # Rust
     taplo # TOML
     yaml-language-server
   ];
