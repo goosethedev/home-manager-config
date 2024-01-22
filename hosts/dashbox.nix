@@ -5,7 +5,7 @@
     # Main config
     ./common.nix
 
-    # ../modules/vscode.nix
+    ../modules/vscode.nix
     ../modules/eww/eww.nix
     ../modules/kitty.nix
     # ../modules/wezterm.nix
@@ -15,9 +15,11 @@
   # Local packages
   home.packages = with pkgs; [
     bitwarden
+    discord
     gammastep
     grimblast
     gthumb
+    lunatask
     neovim
     slack
   ];
