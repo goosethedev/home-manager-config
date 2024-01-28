@@ -10,6 +10,7 @@
     ../modules/kitty.nix
     # ../modules/wezterm.nix
     ../modules/pass.nix
+    ../modules/hyprland.nix
   ];
 
   # Local packages
