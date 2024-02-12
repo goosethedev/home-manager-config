@@ -6,7 +6,7 @@
     ./common.nix
 
     ../modules/vscode.nix
-    ../modules/eww/eww.nix
+    ../modules/eww.nix
     ../modules/kitty.nix
     # ../modules/wezterm.nix
     ../modules/pass.nix

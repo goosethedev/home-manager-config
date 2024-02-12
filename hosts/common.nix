@@ -14,7 +14,6 @@
     ../modules/firefox.nix
     ../modules/git.nix
     ../modules/japanese-fcitx.nix
-    ../modules/emacs/emacs.nix
     ../modules/helix.nix
   ];
   
