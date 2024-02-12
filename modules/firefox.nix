@@ -11,20 +11,20 @@
     id = 0;
     name = "goose";
     
-    containers = {
-      sergiodev = {
-    	  color = "yellow";
-    	  icon = "fingerprint";
-    	  id = 2;
-    	  name = "SergioDev";
-    	};
-    	goose = {
-    	  color = "turquoise";
-    	  icon = "fingerprint";
-    	  id = 1;
-    	  name = "Goose";
-    	};
-    };
+    # containers = {
+    #   sergiodev = {
+    # 	  color = "yellow";
+    # 	  icon = "fingerprint";
+    # 	  id = 2;
+    # 	  name = "SergioDev";
+    # 	};
+    # 	goose = {
+    # 	  color = "turquoise";
+    # 	  icon = "fingerprint";
+    # 	  id = 1;
+    # 	  name = "Goose";
+    # 	};
+    # };
 
     # Managed by Mozilla Sync
     extensions = [];
