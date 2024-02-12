@@ -25,7 +25,7 @@
       export EDITOR=hx
       export LESSHISTFILE="$HOME/.local/state"
       export GNUPGHOME="$HOME/.config/gnupg"
-      export PATH="$HOME/.config/emacs/bin:$PATH"
+      export PATH="$HOME/.local/bin:$HOME/.config/emacs/bin:$PATH"
     '';
     initExtra = ''
       eval "$(direnv hook zsh)"
