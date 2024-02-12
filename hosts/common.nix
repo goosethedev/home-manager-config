@@ -36,6 +36,7 @@
 
   # Packages for all distros and hosts
   home.packages = with pkgs; [
+    # Apps
     appimage-run # For running AppImages
     htop
     obsidian
@@ -44,7 +45,22 @@
     spotify
     vlc
     
+    # System utils
+    brightnessctl
+    dunst
+    hyprpaper
+    playerctl
+    rofi-wayland
+    wget
+    wl-clipboard
+    xdg-utils
+
     # Fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    fira-code
+    fira-code-symbols
+    comic-mono
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 }
