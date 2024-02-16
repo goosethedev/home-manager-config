@@ -13,6 +13,7 @@
     ../modules/zsh.nix
     ../modules/firefox.nix
     ../modules/git.nix
+    ../modules/joshuto.nix
     ../modules/japanese-fcitx.nix
     ../modules/helix.nix
   ];
