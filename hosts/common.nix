@@ -8,11 +8,15 @@
   # Home manager release config style
   home.stateVersion = "23.05";
 
+  # Enable unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Common modules for all distros and hosts
   imports = [
     ../modules/zsh.nix
     ../modules/firefox.nix
     ../modules/git.nix
+    ../modules/gitui.nix
     ../modules/joshuto.nix
     ../modules/japanese-fcitx.nix
     ../modules/helix.nix
@@ -37,8 +41,7 @@
   # Packages for all distros and hosts
   home.packages = with pkgs; [
     # Apps
-    appimage-run # For running AppImages
-    htop
+    bottom
     obsidian
     onlyoffice-bin
     neofetch

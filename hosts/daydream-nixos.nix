@@ -19,6 +19,7 @@
 
   # Local packages
   home.packages = with pkgs; [
+    appimage-run # For running AppImages
     bitwarden
     discord
     gammastep

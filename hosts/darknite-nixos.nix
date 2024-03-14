@@ -19,12 +19,17 @@
 
   # Local packages
   home.packages = with pkgs; [
+    appimage-run # For running AppImages
     bitwarden
+    discord
+    element-desktop
     gammastep
     grimblast
     gthumb
     neovim
+    pcmanfm
     stremio
+    zotero_7
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
