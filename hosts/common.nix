@@ -41,7 +41,6 @@
   # Packages for all distros and hosts
   home.packages = with pkgs; [
     # Apps
-    bottom
     obsidian
     onlyoffice-bin
     neofetch
@@ -58,6 +57,13 @@
     wl-clipboard
     xdg-utils
 
+    # CLI tools
+    bottom
+    dua
+    fd
+    lsd
+    tealdeer
+    
     # Fonts
     noto-fonts-cjk
     noto-fonts-emoji
