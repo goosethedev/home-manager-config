@@ -20,6 +20,7 @@
     ../modules/joshuto.nix
     ../modules/japanese-fcitx.nix
     ../modules/helix.nix
+    ../modules/theme.nix
   ];
   
   # XDG configs (add .desktop path for HM packages)
