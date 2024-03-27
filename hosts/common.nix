@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, nixvim-config,  ... }:
 
 {
   # Basic info
@@ -41,6 +41,9 @@
 
   # Packages for all distros and hosts
   home.packages = with pkgs; [
+    # Nixvim config package
+    nixvim-custom
+    
     # Apps
     obsidian
     onlyoffice-bin
@@ -63,6 +66,7 @@
     dua
     fd
     lsd
+    ripgrep
     tealdeer
     
     # Fonts
