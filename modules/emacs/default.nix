@@ -3,7 +3,7 @@
 {
   # Import LSPs
   imports = [
-    ../lsp.nix
+    ../lsp
   ];
 
   programs.emacs = {

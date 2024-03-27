@@ -1,4 +1,4 @@
-{ config, pkgs, nixvim-config,  ... }:
+{ config, pkgs,  ... }:
 
 {
   # Basic info
@@ -13,14 +13,13 @@
 
   # Common modules for all distros and hosts
   imports = [
-    ../modules/zsh.nix
-    ../modules/firefox.nix
-    ../modules/git.nix
-    ../modules/gitui.nix
-    ../modules/joshuto.nix
-    ../modules/japanese-fcitx.nix
-    ../modules/helix.nix
-    ../modules/theme.nix
+    ../modules/firefox
+    ../modules/fcitx
+    ../modules/git
+    ../modules/helix
+    ../modules/joshuto
+    ../modules/theme
+    ../modules/zsh
   ];
   
   # XDG configs (add .desktop path for HM packages)

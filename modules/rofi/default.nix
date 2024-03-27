@@ -2,6 +2,7 @@
 
 {
   # Set files in ~/.config
-  xdg.configFile."dunst".source = ../config_dirs/dunst;
+  xdg.configFile."rofi".source = ./config;
 }
+
 
