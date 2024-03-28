@@ -13,6 +13,7 @@
 
   # Common modules for all distros and hosts
   imports = [
+    # ../modules/coding # Pyenv not working so it's useless
     ../modules/firefox
     ../modules/fcitx
     ../modules/git
