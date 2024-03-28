@@ -4,7 +4,7 @@
   programs.eww = {
     enable = true;
     package = pkgs.eww;
-    configDir = ../config_dirs/eww/config;
+    configDir = ./config;
   };
 
   # Dependencies

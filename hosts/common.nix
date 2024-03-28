@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs,  ... }:
 
 {
   # Basic info
@@ -13,13 +13,14 @@
 
   # Common modules for all distros and hosts
   imports = [
-    ../modules/zsh.nix
-    ../modules/firefox.nix
-    ../modules/git.nix
-    ../modules/gitui.nix
-    ../modules/joshuto.nix
-    ../modules/japanese-fcitx.nix
-    ../modules/helix.nix
+    # ../modules/coding # Pyenv not working so it's useless
+    ../modules/firefox
+    ../modules/fcitx
+    ../modules/git
+    ../modules/helix
+    ../modules/joshuto
+    ../modules/theme
+    ../modules/zsh
   ];
   
   # XDG configs (add .desktop path for HM packages)
@@ -40,6 +41,9 @@
 
   # Packages for all distros and hosts
   home.packages = with pkgs; [
+    # Nixvim config package
+    nixvim-custom
+    
     # Apps
     obsidian
     onlyoffice-bin
@@ -62,6 +66,7 @@
     dua
     fd
     lsd
+    ripgrep
     tealdeer
     
     # Fonts

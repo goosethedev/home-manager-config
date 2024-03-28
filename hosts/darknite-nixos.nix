@@ -5,16 +5,16 @@
     # Main config
     ./common.nix
     
-    # ../modules/vscode.nix
-    ../modules/eww.nix
-    ../modules/kitty.nix
-    # ../modules/wezterm.nix
-    ../modules/pass.nix
-    ../modules/hyprland.nix
-    ../modules/dunst.nix
-    ../modules/fcitx5.nix
-    ../modules/rofi.nix
-    ../modules/xkb.nix
+    # Modules
+    ../modules/dunst
+    ../modules/eww
+    ../modules/hyprland
+    ../modules/kitty
+    ../modules/pass
+    ../modules/rofi
+    # ../modules/vscode
+    # ../modules/wezterm
+    ../modules/xkb
 ];
 
   # Local packages

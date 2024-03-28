@@ -12,23 +12,30 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim-config = {
+      url = "git+https://codeberg.org/goosethedev/nixvim-config";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nixgl, ... }:
+  outputs = { nixpkgs, home-manager, nixgl, nixvim-config, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         system = system;
-        # Seems to not work anymore?
-        # config.allowUnfree = true;
-        overlays = [ nixgl.overlay ];
+
+        overlays = [
+          nixgl.overlay
+
+          (final: prev: {
+            nixvim-custom = nixvim-config.packages.${system}.default;
+          })
+        ];
       };
     in {
       homeConfigurations."goose" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
         modules = [ ./home.nix ];
 
         # Optionally use extraSpecialArgs

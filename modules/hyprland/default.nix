@@ -3,12 +3,11 @@
 let
   configFiles = [
     "main"
-    # "hyprland"
     "media"
     "keybinds"
   ];
 
-  toSource = file: { "hypr/${file}.conf".source = ./.. + "/config_dirs/hypr/${file}.conf"; };
+  toSource = file: { "hypr/${file}.conf".source = ./. + "/config/${file}.conf"; };
   
   # Build attrset with configFiles, including hyprpaper
   configFileSet = builtins.foldl' (acc: elem: acc // elem) {} (map toSource (configFiles ++ [ "hyprpaper" ]));
@@ -16,7 +15,7 @@ in {
 
   # Map configFiles to ~/.config/hypr, including wallpapers dir
   xdg.configFile = configFileSet // {
-    "hypr/wallpapers".source = ../config_dirs/hypr/wallpapers;
+    "hypr/wallpapers".source = ./config/wallpapers;
   };
 
   # Enable Hyprland and create hyprland.conf
