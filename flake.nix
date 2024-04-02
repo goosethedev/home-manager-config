@@ -13,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim-config = {
-      url = "git+https://codeberg.org/goosethedev/nixvim-config";
+      url = "github:goosethedev/shima";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
