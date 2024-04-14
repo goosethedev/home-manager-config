@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   programs.wezterm = {
     enable = true;
     extraConfig = ''
@@ -8,6 +11,7 @@
       return {
         color_scheme = "Catppuccin Mocha",
         font = wezterm.font "FiraCode Nerd Font",
+        hide_tab_bar_if_only_one_tab = false,
       }
     '';
     # For future OLEDppuccin setup
