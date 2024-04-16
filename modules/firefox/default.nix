@@ -11,21 +11,6 @@
     id = 0;
     name = "goose";
     
-    # containers = {
-    #   sergiodev = {
-    # 	  color = "yellow";
-    # 	  icon = "fingerprint";
-    # 	  id = 2;
-    # 	  name = "SergioDev";
-    # 	};
-    # 	goose = {
-    # 	  color = "turquoise";
-    # 	  icon = "fingerprint";
-    # 	  id = 1;
-    # 	  name = "Goose";
-    # 	};
-    # };
-
     # Managed by Mozilla Sync
     extensions = [];
 
@@ -85,6 +70,12 @@
       "browser.newtabpage.pinned" = "[]";
       "devtools.toolbox.host" = "right";
       "services.sync.username" = "goosethedev@proton.me";
+
+      # Allow extensions on sites with restrictions
+      "extensions.quarantineIgnoredByUser.78272b6fa58f4a1abaac99321d503a20@proton.me" = true;
+      "extensions.quarantineIgnoredByUser.vimium-c@gdh1995.cn" = true;
+      "extensions.quarantineIgnoredByUser.{84601290-bec9-494a-b11c-1baa897a9683}" = true;
+      "extensions.quarantineIgnoredByUser.{a2503cd4-4083-4c2f-bef2-37767a569867}" = true;
     };
   };
 }
