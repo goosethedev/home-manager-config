@@ -18,15 +18,8 @@
   # Local packages
   home.packages = with pkgs; [
     appimage-run # For running AppImages
-    bitwarden
     discord
-    element-desktop
-    gammastep
-    grimblast
-    gthumb
-    pcmanfm
     stremio
-    ytui-music
     zotero_7
   ];
 

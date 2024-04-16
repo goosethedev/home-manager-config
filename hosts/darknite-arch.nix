@@ -23,14 +23,7 @@
 
   # Local packages
   home.packages = with pkgs; [
-    bitwarden
     discord
-    element-desktop
-    gammastep
-    grimblast
-    gthumb
-    pcmanfm
-    ytui-music
     
     # For OpenGL programs e.g. kitty
     nixgl.auto.nixGLDefault

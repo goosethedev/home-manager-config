@@ -1,11 +1,10 @@
-{ config, lib, pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # LSP to use for Emacs or Helix
   home.packages = with pkgs; [
     # Nix
     nil # Lang server
-    nixpkgs-fmt # Formatter
+    # nixpkgs-fmt # Formatter
+    alejandra # Replacement for nixfmt
 
     # Web
     typescript

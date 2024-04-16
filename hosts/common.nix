@@ -1,6 +1,8 @@
-{ config, pkgs,  ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Basic info
   home.username = "goose";
   home.homeDirectory = "/home/goose";
@@ -22,10 +24,10 @@
     ../modules/theme
     ../modules/zsh
   ];
-  
+
   # XDG configs (add .desktop path for HM packages)
   xdg.mime.enable = true;
-  xdg.systemDirs.data = [ "${config.home.homeDirectory}/.nix-profile/share/applications" ];
+  xdg.systemDirs.data = ["${config.home.homeDirectory}/.nix-profile/share/applications"];
 
   # Enable discovering fonts in home.packages
   fonts.fontconfig.enable = true;
@@ -43,38 +45,30 @@
   home.packages = with pkgs; [
     # Nixvim config package
     nixvim-custom
-    
-    # Apps
+
+    # Apps and utils
+    bitwarden
+    element-desktop
     obsidian
     onlyoffice-bin
     neofetch
     spotify
     vlc
-    
-    # System utils
-    brightnessctl
-    dunst
-    hyprpaper
-    playerctl
-    rofi-wayland
     wget
-    wl-clipboard
-    xdg-utils
 
-    # CLI tools
+    # CLI tools (Rust!)
     bottom
     dua
     fd
     lsd
     ripgrep
     tealdeer
-    
+
     # Fonts
     noto-fonts-cjk
     noto-fonts-emoji
     fira-code
     fira-code-symbols
-    comic-mono
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    (nerdfonts.override {fonts = ["FiraCode"];})
   ];
 }
