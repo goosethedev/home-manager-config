@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # TODO: None of this works yet
   home.packages = with pkgs; [
     catppuccin-kde
@@ -16,9 +18,9 @@
     theme = {
       name = "Catppuccin-Mocha-Compact-Teal-Dark";
       package = pkgs.catppuccin-gtk.override {
-        accents = [ "teal" "mauve" ];
+        accents = ["teal" "mauve"];
         size = "compact";
-        tweaks = [ "rimless" "black" ];
+        tweaks = ["rimless" "black"];
         variant = "mocha";
       };
     };
@@ -39,12 +41,11 @@
     "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
     "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
   };
-  
+
   # Doesn't work (?)
   qt = {
     enable = true;
-    platformTheme = "qtct";
+    platformTheme.name = "qtct";
     style.name = "kvantum";
   };
 }
-
