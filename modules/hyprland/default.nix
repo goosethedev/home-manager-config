@@ -32,6 +32,17 @@ in {
     };
   };
 
+  # Enable discovering fonts in home.packages
+  fonts.fontconfig.enable = true;
+
+  # Imports
+  imports = [
+    ../dunst
+    ../eww
+    ../rofi
+    ../theme
+  ];
+
   # Dependencies
   home.packages = with pkgs; [
     brightnessctl
@@ -43,5 +54,12 @@ in {
     playerctl
     wl-clipboard
     xdg-utils
+
+    # Fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    fira-code
+    fira-code-symbols
+    (nerdfonts.override {fonts = ["FiraCode"];})
   ];
 }

@@ -4,12 +4,11 @@
     ./common.nix
 
     # Modules
-    ../modules/dunst
-    ../modules/eww
+    ../modules/firefox
+    ../modules/helix
     ../modules/hyprland
     ../modules/kitty
     ../modules/pass
-    ../modules/rofi
     ../modules/vscode
     # ../modules/wezterm # Doesn't work
     ../modules/xkb
@@ -18,9 +17,18 @@
   # Local packages
   home.packages = with pkgs; [
     appimage-run # For running AppImages
+
+    # Electron apps
+    bitwarden
     discord
+    element-desktop
+    obsidian
+    spotify
     stremio
     zotero_7
+
+    # Nixvim config package
+    nixvim-custom
 
     # Temporal while project
     geckodriver
