@@ -21,6 +21,11 @@
     discord
     stremio
     zotero_7
+
+    # Temporal while project
+    geckodriver
+    chromedriver
+    google-chrome
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
